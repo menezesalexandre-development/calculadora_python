@@ -1,7 +1,6 @@
 # BIBLIOTECAS:
 from time import sleep
 from tkinter import *
-from tkinter import ttk
 
 # CORES:
 preto = '#000'
@@ -40,8 +39,6 @@ def entrar_valor(event):
     global simbolo_event
     global expressao
 
-    ultimo_caractere = len(expressao) - 1
-
     if event == '+' or event == '-' or event == '*' or event == '/':
         simbolo_event = True
     else:
@@ -49,7 +46,7 @@ def entrar_valor(event):
 
     if len(expressao) == 0 and memoria_temporaria == 0 and simbolo_event == True:
         expressao = ''
-    elif memoria_temporaria >= 0.1 >= len(expressao) and simbolo_event == True:
+    elif memoria_temporaria != 0 >= len(expressao) and simbolo_event == True:
         expressao = expressao + str(memoria_temporaria) + str(event)
     else:
         expressao = expressao + str(event)
@@ -84,15 +81,33 @@ def limpar_visor():
     labelTexto.set('')
 
 
+# FUNÇÃO PARA APAGAR DÍGITO:
+def apagar_digito():
+    global expressao
+
+    if len(expressao) >= 1:
+        index = len(expressao) - 1
+        list_expressao = list(expressao)
+        list_expressao.pop(index)
+        expressao = "".join(list_expressao)
+        labelTexto.set(expressao)
+    else:
+        print('Não foi possível apagar o dígito pois a expressão não existe')
+
+
 # LABEL:
 appLabel = Label(visor, textvariable=labelTexto, width=18, height=2, padx=7, relief=FLAT, anchor='e', justify=RIGHT,
                  font='helvetica 18', bg=azul_escuro1, fg=branco)
 appLabel.place(x=0, y=0)
 
 # BOTÕES:
-botaoClear = Button(principal, command=limpar_visor, text='C', width=22, height=2, font='Helvetica', relief=RAISED,
+botaoClear = Button(principal, command=limpar_visor, text='C', width=14, height=2, font='Helvetica', relief=RAISED,
                     overrelief=RIDGE)
 botaoClear.place(x=0, y=0)
+
+botaoApagar = Button(principal, command=apagar_digito, text='🠔', width=6, height=2, font='Helvetica', relief=RAISED,
+                     overrelief=RIDGE)
+botaoApagar.place(x=141, y=0)
 
 botaoDivisao = Button(principal, command=lambda: entrar_valor('/'), text='/', width=5, height=2, font='Helvetica',
                       bg=laranja1, fg=branco, relief=RAISED,
