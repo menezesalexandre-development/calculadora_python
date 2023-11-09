@@ -21,7 +21,7 @@ EN: Effective and functional application for performing basic mathematical opera
 </div>
 
 <div align="center" id="desc_img">
-<img src="https://github.com/menezesalexandre-development/calculadora_python/assets/105326153/d5495eb4-2a1d-42ab-a3fc-e20415927625">
+<img src="https://github.com/menezesalexandre-development/calculadora_python/assets/105326153/202d0fa6-004e-4151-b9b9-e1003de14d29">
 </div>
 </div>
 
